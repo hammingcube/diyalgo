@@ -1,18 +1,23 @@
 package main
 
 import (
-	"fmt"
+	_ "fmt"
+	"github.com/maddyonline/sleepy"
 	"net/http"
+	"net/url"
 )
 
-func viewHandler(w http.ResponseWriter, r *http.Request) {
-	s := r.URL.Path[1:]
-	fmt.Fprintf(w, "Hi there, I love %s!", s)
+type Item struct{}
+
+func (item Item) Get(values url.Values, headers http.Header) (int, interface{}, http.Header) {
+	items := []string{"item1", "item2"}
+	data := map[string][]string{"items": items}
+	return 200, data, http.Header{"Content-type": {"application/json"}}
 }
- 
 
 func main() {
-	http.HandleFunc("/", viewHandler)
-	http.ListenAndServe(":8080", nil)
+	item := new(Item)
+	api := sleepy.NewAPI()
+	api.AddResource(item, "/items")
+	api.Start(3000)
 }
-

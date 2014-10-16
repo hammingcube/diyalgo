@@ -1,26 +1,18 @@
-## A tutorial on creating Go Web App.
+## An API for running your code remotely
 
-### Docker based installation (and running)
+### Based on sleepy golang API framework 
+See https://github.com/dougblack/sleepy.
 
-```
-docker run --publish 8080:8080 maddyonline/gowebapp
-```
-
-Visit `http://localhost:8080/hi` to see the app in action. (Use docker VM's IP address instead of localhost if docker is running in VM as in Mac OSX.)
-
-
-### More Elaborate Instructions
+#### Instructions
 
 ```
-# Start
-sudo docker run -d --publish 8080:8080 --name mygowebapp  maddyonline/gowebapp
+go get
+go install
+diyalgo
+```
 
-# Stop
-sudo docker stop mygowebapp 
+#### Test
 
-# Delete
-sudo docker rm mygowebapp
-
-# Restart
-sudo docker run -d --publish 8080:8080 --name mygowebapp  maddyonline/gowebapp
+```
+curl localhost:3000/items
 ```

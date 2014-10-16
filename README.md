@@ -15,4 +15,5 @@ diyalgo
 
 ```
 curl localhost:3000/items
+curl"localhost:3000/replay?firstname=madhav&lastname=jha"
 ```
